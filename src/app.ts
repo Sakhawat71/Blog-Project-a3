@@ -5,7 +5,6 @@ import cors from 'cors';
 
 app.use(express.json());
 app.use(cors());
-const port = 3000
 
 
 app.get('/', (req : Request, res: Response) => {
