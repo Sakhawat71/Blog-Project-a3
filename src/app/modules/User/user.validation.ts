@@ -2,8 +2,6 @@ import { z } from "zod";
 
 const createUserValidation = z.object({
     body: z.object({
-        id: z.string({ required_error: "ID is required" }),
-
         name: z.string({ required_error: "Name is required" }),
 
         email: z.string(
