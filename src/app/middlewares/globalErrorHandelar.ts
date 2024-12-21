@@ -16,7 +16,7 @@ const globalErrorHandler: ErrorRequestHandler = async (err, req, res, next): Pro
     //setting default values
     let statusCode = err.statusCodes || 500;
     let message = err.message || "Something went wrong !";
-    let errorSources: TErrorSource = [
+    let error: TErrorSource = [
         {
             path: '',
             message: 'Something went wrong'
@@ -28,26 +28,26 @@ const globalErrorHandler: ErrorRequestHandler = async (err, req, res, next): Pro
         const simplifiedError = handelZodError(err);
         statusCode = simplifiedError?.statusCode;
         message = simplifiedError?.message;
-        errorSources = simplifiedError?.errorSources;
+        error = simplifiedError?.error;
     } else if (err?.name === "ValidationError") {
         const simplifiedError = handelValidationError(err);
         statusCode = simplifiedError?.statusCode;
         message = simplifiedError?.message;
-        errorSources = simplifiedError?.errorSources;
+        error = simplifiedError?.error;
     } else if (err?.name === 'CastError') {
         const simplifiedError = handelCastErrro(err);
         statusCode = simplifiedError?.statusCode;
         message = simplifiedError?.message;
-        errorSources = simplifiedError?.errorSources;
+        error = simplifiedError?.error;
     } else if (err?.code === 11000) {
         const simplifiedError = handelDuplicateError(err);
         statusCode = simplifiedError?.statusCode;
         message = simplifiedError?.message;
-        errorSources = simplifiedError?.errorSources;
+        error = simplifiedError?.error;
     } else if (err instanceof AppError) {
         statusCode = err?.statusCodes;
         message = err.message;
-        errorSources = [
+        error = [
             {
                 path: '',
                 message: err?.message,
@@ -55,7 +55,7 @@ const globalErrorHandler: ErrorRequestHandler = async (err, req, res, next): Pro
         ];
     } else if (err instanceof Error) {
         message = err?.message;
-        errorSources = [
+        error = [
             {
                 path: '',
                 message: err?.message,
@@ -68,7 +68,7 @@ const globalErrorHandler: ErrorRequestHandler = async (err, req, res, next): Pro
         success: false,
         message,
         statusCode,
-        errorSources,
+        error,
         stack: config.NODE_ENV === 'development' ? err?.stack : null,
         // mainError: err,
     })

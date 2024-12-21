@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { TErrorSource, TGenericErrorResponse } from "../interface/error";
 
 const handelCastErrro = (err: mongoose.Error.CastError): TGenericErrorResponse => {
-    const errorSources: TErrorSource = [{
+    const error: TErrorSource = [{
         path: err.path,
         message: err.message,
     }];
@@ -12,7 +12,7 @@ const handelCastErrro = (err: mongoose.Error.CastError): TGenericErrorResponse =
     return {
         statusCode,
         message: 'Cast Error',
-        errorSources,
+        error,
     }
 }
 

@@ -6,7 +6,7 @@ const handelDuplicateError = (err: any): TGenericErrorResponse => {
     const match = err.message.match(/"([^"]*)"/);
     const extractedMessage = match && match[1];
 
-    const errorSources: TErrorSource = [{
+    const error: TErrorSource = [{
         path: err.path || '',
         message: `${extractedMessage} is already exists`
     }]
@@ -15,7 +15,7 @@ const handelDuplicateError = (err: any): TGenericErrorResponse => {
     return {
         statusCode,
         message: 'Duplicate Key Error',
-        errorSources
+        error
     }
 };
 
