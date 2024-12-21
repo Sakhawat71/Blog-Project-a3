@@ -21,12 +21,15 @@ const updateUserInDB = async (id: string, payLoad: Partial<IUser>) => {
     return await UserModel.findByIdAndUpdate(id, payLoad, { new: true });
 };
 
-
+// delete
+const deleteUserFromDB = async (id: string) => {
+    return await UserModel.findByIdAndDelete(id);
+};
 
 export const userServices = {
     createUserintoDB,
     getAllUsersFromDB,
     getSingleUserFromDB,
     updateUserInDB,
-
+    deleteUserFromDB
 };
