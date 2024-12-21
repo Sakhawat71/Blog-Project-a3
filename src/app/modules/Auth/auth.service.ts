@@ -1,5 +1,6 @@
 import { IUser } from "../User/user.interface";
 import { UserModel } from "../User/user.model";
+import { ILoginUser } from "./auth.interface";
 
 
 // register
@@ -8,8 +9,8 @@ const registerUser = async (payLoad : IUser) => {
 };
 
 // login
-const loginUser = async () => {
-    return await UserModel.create();
+const loginUser = async (payLoad : ILoginUser) => {
+    // return await UserModel.create(payLoad);
 };
 
 export const authService = {

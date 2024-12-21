@@ -11,4 +11,9 @@ route.post(
     userController.register
 );
 
+route.post(
+    '/login',
+    userController.login
+);
+
 export const authRoute = route;
