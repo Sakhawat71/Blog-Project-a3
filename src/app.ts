@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from 'express';
 const app: Application = express();
 import cors from 'cors';
 import route from './app/router';
+import globalErrorHandler from './app/middlewares/globalErrorHandelar';
 
 
 app.use(express.json());
@@ -17,5 +18,7 @@ app.get('/', (req: Request, res: Response) => {
         message: 'welcome to Blog Project Assignment api ...... ..... ....',
     });
 });
+
+app.use(globalErrorHandler);
 
 export default app;
