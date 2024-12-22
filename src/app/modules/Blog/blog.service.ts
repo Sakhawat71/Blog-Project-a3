@@ -21,7 +21,7 @@ const getBlogByIdFromDB = async (id: string) => {
 const updateBlogByIdInDB = async (
     id: string,
     payLoad: Partial<IBlog>
-) => {
+) => {    
     return await BlogModel.findByIdAndUpdate(
         id,
         payLoad,
