@@ -45,9 +45,8 @@ const loginUser = async (payLoad: ILoginUser) => {
 
     const JwtPayload = {
         userEmail: user.email,
-        role: user?.role,
+        role: user.role,
     };
-
 
     // Create jwt access token
     const accessToken = jwt.sign(
