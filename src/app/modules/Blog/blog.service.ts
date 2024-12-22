@@ -18,8 +18,6 @@ const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
         .search(['title', 'content'])
         .sort()
         .filter()
-
-
     return await blogQuery.modelQuery;
 };
 
