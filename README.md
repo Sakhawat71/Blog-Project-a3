@@ -10,12 +10,16 @@ https://blog-project-71.vercel.app/
 ## Features
 
 1. **User Management**
-   - User registration and login.
-   - Admin can block users.
+    - User registration and login.
 
 2. **Blog Management**
-   - Create, update, delete blogs.
-   - Public API to fetch blogs with search, filter, and sort options.
+    - Create, update, delete blogs.
+    - Public API to fetch blogs with search, filter, and sort options.
+
+3. **Admin Actions**
+    - Admin can block a user by updating the `isBlocked` property to `true`.
+    - Admin can delete any blog by its ID.
+
 
 ---
 
