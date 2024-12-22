@@ -127,8 +127,67 @@ const getSingleBlog = catchAsync(async (req, res) => {
 });
 
 
+// delete blog
+const deleteBlog = catchAsync(async (req, res) => {
+    
+    const { id: blogId } = req.params;
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        throw new AppError(
+            StatusCodes.UNAUTHORIZED,
+            'Unauthorized access',
+        );
+    };
+
+    const token = authHeader?.split(' ')[1];
+    const decoded = jwt.verify(token as string, config.accessTokenSecret as string) as JwtPayload;
+    const { id } = decoded;
+
+    const user = await UserModel.findById(id);
+    if (!user) {
+        throw new AppError(
+            StatusCodes.NOT_FOUND,
+            'User not found',
+        );
+    };
+    if (user.isBlocked) {
+        throw new AppError(
+            StatusCodes.BAD_REQUEST,
+            'User is blocked',
+        );
+    };
+
+    // check blog exist or not
+    const findBlog = await BlogModel.findById(blogId);
+    if (!findBlog) {
+        throw new AppError(
+            StatusCodes.NOT_FOUND,
+            'Blog not Found'
+        );
+    };
+
+    // check is token user === blog author
+    if (!(id === findBlog?.author?.toString())) {
+        throw new AppError(
+            StatusCodes.UNAUTHORIZED,
+            'Unauthorized access'
+        )
+    }
+
+    await blogService.deleteBlogByIdFromDB(blogId);
+    sendResponse(res,{
+        success : true,
+        message : "Blog deleted successfully",
+        statusCode : StatusCodes.OK,
+        data : null,
+    })
+
+});
+
+
 export const blogController = {
     createBlog,
     updateBlog,
     getSingleBlog,
+    deleteBlog,
 };

@@ -20,6 +20,11 @@ router.patch(
 router.get(
     '/:id',
     blogController.getSingleBlog
+);
+
+router.delete(
+    '/:id',
+    blogController.deleteBlog
 )
 
 
