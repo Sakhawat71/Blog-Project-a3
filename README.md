@@ -1,3 +1,4 @@
+```
 project-root/
 │
 ├── modules/                # Feature-based modules
@@ -46,3 +47,4 @@ project-root/
 ├── .gitignore              # Files to ignore in Git
 ├── package.json            # Dependencies and project scripts
 └── README.md               # Project documentation
+```
