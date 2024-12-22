@@ -15,6 +15,11 @@ router.patch(
     '/:id',
     validateRequest(blogValidation.updateBlogValidation),
     blogController.updateBlog
+);
+
+router.get(
+    '/:id',
+    blogController.getSingleBlog
 )
 
 

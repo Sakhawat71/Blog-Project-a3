@@ -27,11 +27,6 @@ const blogSchema = new Schema<IBlog>(
 );
 
 
-// // Pre-hook to populate the author field for find, findOne, and findById
-// blogSchema.pre(/^find/,async function (next) {
-//     this.populate("author")
-//     next();
-// });
 
 
 export const BlogModel = model<IBlog>("Blog", blogSchema);

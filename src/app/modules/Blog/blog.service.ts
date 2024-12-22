@@ -14,7 +14,7 @@ const getAllBlogsFromDB = async () => {
 
 // get a blog by id from the database
 const getBlogByIdFromDB = async (id: string) => {
-    return await BlogModel.findById(id);
+    return await BlogModel.findById(id).populate('author');
 };
 
 // update a blog by id in the database
