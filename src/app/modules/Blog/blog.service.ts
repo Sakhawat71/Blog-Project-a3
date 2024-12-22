@@ -1,27 +1,38 @@
+import QueryBuilder from "../../builder/queryBuilder";
 import { IBlog } from "./blog.interface";
 import { BlogModel } from "./blog.model";
 
 
-// create a blog into the database
+// create 
 const createBlogIntoDB = async (payLoad: IBlog) => {
     return await BlogModel.create(payLoad);
 };
 
-// get all the blogs from the database
-const getAllBlogsFromDB = async () => {
-    return await BlogModel.find();
+// get all 
+const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
+
+    const blogQuery = new QueryBuilder(
+        BlogModel.find().populate('author'),
+        query
+    )
+        .search(['title', 'content'])
+        // .sort()
+        // .filter()
+
+
+    return await blogQuery.modelQuery;
 };
 
-// get a blog by id from the database
+// get single
 const getBlogByIdFromDB = async (id: string) => {
     return await BlogModel.findById(id).populate('author');
 };
 
-// update a blog by id in the database
+// update  
 const updateBlogByIdInDB = async (
     id: string,
     payLoad: Partial<IBlog>
-) => {    
+) => {
     return await BlogModel.findByIdAndUpdate(
         id,
         payLoad,
@@ -29,7 +40,7 @@ const updateBlogByIdInDB = async (
     );
 };
 
-// delete a blog by id from the database
+// delete  
 const deleteBlogByIdFromDB = async (id: string) => {
     return await BlogModel.findByIdAndDelete(id);
 };
