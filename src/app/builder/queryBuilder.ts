@@ -21,12 +21,20 @@ class QueryBuilder<T> {
         return this;
     };
 
-    // sort() {
-    //     const sortBy = this?.query?.sort || '-createdAt';
-    //     this.modelQuery = this.modelQuery.sort(sortBy as string);
-    //     return this;
-    // };
+    sort() {
+        const sortBy = this?.query?.sortBy || 'createdAt';
+        const sortOrder = this.query.sortOrder === "desc" ? "-" : "";
+        this.modelQuery = this.modelQuery.sort(`${sortOrder}${sortBy}`);
+        return this;
+    };
 
+    filter() {
+        const filter = this.query.filter as string;
+        if (filter) {
+            this.modelQuery = this.modelQuery.find({ author: filter } as FilterQuery<T>);
+        }
+        return this;
+    }
 
     // filter() {
     //     const queryObj = { ...this.query }

@@ -16,8 +16,8 @@ const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
         query
     )
         .search(['title', 'content'])
-        // .sort()
-        // .filter()
+        .sort()
+        .filter()
 
 
     return await blogQuery.modelQuery;
