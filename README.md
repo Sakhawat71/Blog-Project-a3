@@ -1,7 +1,11 @@
 
-# Blog Management API
+## Blog Project API
 
 A simple API for managing blogs, including features like user management, blog creation, and administrative controls.
+
+## live link
+
+https://blog-project-71.vercel.app/
 
 ## Features
 
@@ -46,17 +50,23 @@ Allows a logged-in user to create a blog.
 `PATCH /api/blogs/:blogId`  
 Allows the author of a blog to update it.
 
-#### 4. **Delete a Blog (Admin)**  
-`DELETE /api/blogs/:blogId`  
-Allows an admin to delete any blog.
+#### 4 **Delete Blog**
+`DELETE /api/blogs/:id`
+Allows a logged-in user to delete their own blog by its ID.
+
 
 ---
 
-### **User Endpoints**
+### **Admin Endpoints**
 
 #### 1. **Block User (Admin)**  
 `PATCH /api/admin/users/:userId/block`  
 Allows an admin to block a user.
+
+#### 2. **Delete a Blog (Admin)**  
+`DELETE /api/blogs/:blogId`  
+Allows an admin to delete any blog.
+
 
 ---
 
